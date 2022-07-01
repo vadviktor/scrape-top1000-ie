@@ -1,0 +1,9 @@
+playwright
+XlsxWriter
+
+black
+flake8
+ipython
+isort
+ptpython
+rich
