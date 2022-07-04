@@ -23,6 +23,8 @@ worksheet.write(0, 1, "name")
 worksheet.write(0, 2, "description")
 worksheet.write(0, 3, "employees")
 worksheet.write(0, 4, "turnover")
+worksheet.write(0, 5, "contact name")
+worksheet.write(0, 6, "contact position")
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False)
@@ -56,6 +58,16 @@ with sync_playwright() as p:
         elem = company_page.locator("span:right-of(label:text('Turnover:'))").first
         if elem.count() == 1:
             worksheet.write(i + 1, 4, elem.inner_text().strip())
+
+        contact_name = text_by(
+            company_page, "#content div.people > ul > li > span.name"
+        )
+        worksheet.write(i + 1, 5, contact_name)
+
+        contact_position = text_by(
+            company_page, "#content div.people > ul > li > span.position"
+        )
+        worksheet.write(i + 1, 6, contact_position)
 
         company_page.close()
 

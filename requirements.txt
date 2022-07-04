@@ -4,6 +4,7 @@ XlsxWriter
 black
 flake8
 ipython
-isort
 ptpython
+isort
 rich
+mypy
